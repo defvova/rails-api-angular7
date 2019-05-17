@@ -1,0 +1,22 @@
+<div class="container login-page">
+  <h2>Sign In</h2>
+  <button (click)="signInViaProvider()" mat-stroked-button>Sign In via GitHub</button>
+  <div class="split-text">Or</div>
+  <form [formGroup]="form" (submit)="submit()" class="form-container">
+    <mat-form-field>
+      <input matInput placeholder="Enter your email" formControlName="email" class="form-right-align">
+      <mat-error *ngIf="hasError('email', 'required')">Email is required</mat-error>
+      <mat-error *ngIf="hasError('email', 'email')">Email is invalid</mat-error>
+    </mat-form-field>
+    <br />
+    <mat-form-field>
+      <input matInput placeholder="Enter your password" formControlName="password" [type]="hide ? 'password' : 'text'" class="form-right-align">
+      <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      <mat-error *ngIf="hasError('password', 'required')">Password is required</mat-error>
+      <mat-error *ngIf="hasError('password', 'minlength')">Password should have more than 6 characters</mat-error>
+    </mat-form-field>
+    <button mat-flat-button color="primary" type="submit">Submit</button>
+    <p class="helper-text">Don't have an account? <a routerLink="/sign_up">Sign up</a> here.</p>
+  </form>
+</div>
+

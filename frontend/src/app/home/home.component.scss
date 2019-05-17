@@ -1,0 +1,91 @@
+.home-page {
+  &.mobile {
+    .mat-grid-tile {
+      width: 100% !important;
+      position: relative;
+      left: 0 !important;
+      top: 0 !important;
+      margin-bottom: 10px;
+    }
+  }
+
+  .spinner {
+    margin: 0 auto;
+  }
+
+  .period-select {
+    margin-left: 16px;
+  }
+
+  .register-form {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  &.mat-toolbar {
+    background: #3f51b5;
+    font-size: 12px;
+    margin-top: 52px;
+    margin-bottom: 16px;
+
+    .mat-toolbar-row {
+      padding: 0;
+    }
+  }
+
+  .avatar {
+    border-radius: 10px;
+    width: 20px;
+  }
+
+  .header {
+    margin-top: 16px;
+  }
+
+  .footer {
+    display: flex;
+    position: absolute;
+    bottom: 29px;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-left: -16px;
+    width: 100%;
+
+    span {
+      margin-left: 5px;
+    }
+
+    .mat-icon {
+      margin-left: 20px;
+      height: 16px;
+      width: 16px;
+    }
+
+    .material-icons {
+      font-size: 16px;
+    }
+
+    .stars {
+      margin-right: 16px;
+    }
+
+    .fork {
+      transform: rotate(90deg);
+    }
+  }
+
+  .language-color {
+    border-radius: 10px;
+    margin-right: 5px;
+    margin-left: 16px;
+    float: left;
+    height: 10px;
+    width: 10px;
+  }
+
+  .mat-card {
+    height: 100%;
+    width: 100%;
+  }
+}

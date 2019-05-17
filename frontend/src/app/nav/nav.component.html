@@ -1,0 +1,11 @@
+<header>
+  <nav>
+    <button routerLink="/" class="logo" mat-button>{{appTitle}}</button>
+
+    <div class="flex-spacer"></div>
+
+    <button *ngIf="currentUser && currentUser.attributes" mat-button>{{currentUser.attributes.email}}</button>
+    <button (click)="logout()" *ngIf="currentUser" mat-button>Logout</button>
+  </nav>
+</header>
+

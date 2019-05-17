@@ -1,0 +1,63 @@
+<mat-toolbar color="primary" class="home-page">
+  <mat-toolbar-row>
+    <div class="container">
+      <form [formGroup]="registerForm" class="register-form">
+        <mat-form-field>
+          <mat-select formControlName="currentLanguage">
+            <mat-optgroup *ngFor="let group of languages" [label]="group.name">
+              <mat-option *ngFor="let l of group.data" [value]="l.value">
+                {{l.viewValue}}
+              </mat-option>
+            </mat-optgroup>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="period-select">
+          <mat-select formControlName="since">
+            <mat-option *ngFor="let since of period" [value]="since.value">
+              {{since.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div class="flex-spacer"></div>
+        <a mat-raised-button routerLink="." (click)="luckyButton()">I'm feeling lucky</a>
+      </form>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<div class="container home-page">
+  <mat-progress-spinner class="spinner" [color]="color" [mode]="mode" [value]="value" *ngIf="list.length == 0"></mat-progress-spinner>
+  <mat-grid-list cols='2' rowHeight="177px" gutterSize="10px" class="home-page" [ngClass]="{ 'mobile': isSmallScreen }" *ngIf="list.length > 0">
+    <mat-grid-tile *ngFor="let trending of list">
+      <mat-card>
+        <mat-card-content class="header">
+          <mat-card-title>
+            <a mat-button href="{{trending.attributes.url}}" target="_blank" color="primary">
+              {{trending.attributes.author}}/{{trending.attributes.name}}
+            </a>
+          </mat-card-title>
+        </mat-card-content>
+        <mat-card-content class="body">
+          <div>{{trending.attributes.description}}</div>
+        </mat-card-content>
+        <mat-card-content class="footer">
+          <div class="language-color" *ngIf="trending.attributes.languageColor" [ngStyle]="{background: trending.attributes.languageColor}"></div>
+          <span *ngIf="trending.attributes.language">{{trending.attributes.language}}</span>
+          <mat-icon>grade</mat-icon>
+          <span>{{trending.attributes.stars}}</span>
+          <mat-icon class="fork">call_split</mat-icon>
+          <span>{{trending.attributes.forks}}</span>
+          <mat-icon>group</mat-icon>
+          <span *ngFor="let user of trending.attributes.builtBy.data">
+            <a href="{{user.attributes.href}}" target="_blank" matTooltip="{{user.attributes.username}}">
+              <img src="{{user.attributes.avatar}}" class="avatar">
+            </a>
+          </span>
+          <div class="flex-spacer"></div>
+          <mat-icon>star_border</mat-icon>
+          <span class="stars">{{trending.attributes.currentPeriodStars}} Stars</span>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

@@ -1,0 +1,30 @@
+<div class="container sign-up-page">
+  <h2>Sign Up</h2>
+  <button mat-stroked-button (click)="signUpViaProvider()">Sign Up via GitHub</button>
+  <div class="split-text">Or</div>
+  <form [formGroup]="form" (submit)="submit()" class="form-container">
+    <mat-form-field>
+      <input matInput placeholder="Enter your email" formControlName="email" class="form-right-align">
+      <mat-error *ngIf="hasError('email', 'required')">Email is required</mat-error>
+      <mat-error *ngIf="hasError('email', 'email')">Email is invalid</mat-error>
+      <mat-error *ngIf="hasError('email', 'serverError')">Email {{serverError}}</mat-error>
+    </mat-form-field>
+    <br />
+    <mat-form-field>
+      <input matInput placeholder="Enter your password" formControlName="password" [type]="hide ? 'password' : 'text'" class="form-right-align">
+      <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      <mat-error *ngIf="hasError('password', 'required')">Password is required</mat-error>
+      <mat-error *ngIf="hasError('password', 'minlength')">Password should have more than 6 characters</mat-error>
+    </mat-form-field>
+    <br />
+    <mat-form-field>
+      <input matInput placeholder="Confirm your password" formControlName="password_confirmation" [type]="hideConfirmation ? 'password' : 'text'" class="form-right-align">
+      <mat-icon matSuffix (click)="hideConfirmation = !hideConfirmation">{{hideConfirmation ? 'visibility_off' : 'visibility'}}</mat-icon>
+      <mat-error *ngIf="hasError('password_confirmation', 'required')">Password confirmation is required</mat-error>
+      <mat-error *ngIf="hasError('password_confirmation', 'minlength')">Password confirmation should have more than 6 characters</mat-error>
+    </mat-form-field>
+    <button mat-flat-button color="primary" type="submit">Submit</button>
+    <p class="helper-text">Already have an account? <a routerLink="/login">Sign in</a> here.</p>
+  </form>
+</div>
+
