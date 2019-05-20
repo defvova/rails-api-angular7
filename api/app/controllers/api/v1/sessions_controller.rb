@@ -1,11 +1,9 @@
 # frozen_string_literal: true
 
 class Api::V1::SessionsController < Api::V1::BaseController
-  skip_before_action :authenticate!, only: %i[create new]
+  skip_before_action :authenticate!, only: %i[create]
 
   def new
-    return head :not_found unless current_user
-
     serializer = UserSerializer.new(current_user)
     render json: serializer
   end
@@ -13,13 +11,13 @@ class Api::V1::SessionsController < Api::V1::BaseController
   def create
     return redirect_to success_front_root_path if sign_in_user_with_provider
 
-    user = User.find_by_email(session_params[:email])
+    user = User.find_by(email: session_params[:email])
     if user&.authenticate(session_params[:password])
       assign_jwt_cookies(user)
-      return render json: UserSerializer.new(user)
+      render json: UserSerializer.new(user)
+    else
+      render json: { error: 'incorrect email or password combination' }
     end
-
-    render json: { error: 'incorrect email or password combination' }
   end
 
   def destroy

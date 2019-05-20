@@ -4,8 +4,8 @@ import { Router } from '@angular/router';
 import { first } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material';
 
-import { AuthenticationService } from '../service/authentication.service';
-import { ApiService } from '../service/api.service';
+import { AuthenticationService } from '../../service/authentication.service';
+import { ApiService } from '../../service/api.service';
 
 @Component({
   selector: 'app-login',
@@ -57,7 +57,7 @@ export class LoginComponent implements OnInit {
       this.auth.login(this.f.email.value, this.f.password.value).pipe(first())
         .subscribe(resp => {
           if (resp.error) {
-            this.snackBar.open(resp.error);
+            this.snackBar.open(resp.error, null, { duration: 5000 });
           } else {
             this.router.navigate(['/']);
           }

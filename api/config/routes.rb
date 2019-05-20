@@ -6,10 +6,11 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :users, only: :create
+      resources :users, only: %i[create update]
       resource :sessions, only: %i[new destroy create]
       resources :trendings, only: :index
       resources :languages, only: :index
+      resources :passwords, only: :update
     end
   end
 end

@@ -1,0 +1,52 @@
+<div class="container profile-page form-content">
+  <form [formGroup]="formProfile" (submit)="submitProfile()" class="form-container">
+    <h2>User info</h2>
+    <mat-form-field>
+      <input matInput placeholder="Email" formControlName="email" class="form-right-align">
+      <mat-error *ngIf="hasError('email', 'required', 'formProfile')">Email is required</mat-error>
+      <mat-error *ngIf="hasError('email', 'email', 'formProfile')">Email is invalid</mat-error>
+      <mat-error *ngIf="hasError('email', 'serverError', 'formProfile')">Email {{serverError}}</mat-error>
+    </mat-form-field>
+    <br />
+    <mat-form-field>
+      <input matInput placeholder="First name" formControlName="first_name" class="form-right-align">
+    </mat-form-field>
+    <br />
+    <mat-form-field>
+      <input matInput placeholder="Last name" formControlName="last_name" class="form-right-align">
+    </mat-form-field>
+    <br />
+    <button mat-flat-button color="primary" class="primary-bg-color" [disabled]="formProfile.invalid" type="submit">Update profile</button>
+    <a mat-raised-button routerLink="/">Back</a>
+  </form>
+  <br />
+  <form [formGroup]="formPassword" (submit)="submitPassword()" class="form-container">
+    <h2>Password</h2>
+    <mat-form-field>
+      <input matInput placeholder="Current password" formControlName="current_password" [type]="hidePassword ? 'password' : 'text'" class="form-right-align">
+      <mat-icon matSuffix (click)="hidePassword = !hidePassword">{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+      <mat-error *ngIf="hasError('current_password', 'required', 'formPassword')">Password is required</mat-error>
+      <mat-error *ngIf="hasError('current_password', 'minlength', 'formPassword')">Password should have more than 6 characters</mat-error>
+      <mat-error *ngIf="hasError('current_password', 'serverError', 'formPassword')">Password {{serverError}}</mat-error>
+    </mat-form-field>
+    <br />
+    <mat-form-field>
+      <input matInput placeholder="New password" formControlName="password" [type]="hideNewPassword ? 'password' : 'text'" class="form-right-align">
+      <mat-icon matSuffix (click)="hideNewPassword = !hideNewPassword">{{hideNewPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+      <mat-error *ngIf="hasError('password', 'required', 'formPassword')">Password is required</mat-error>
+      <mat-error *ngIf="hasError('password', 'minlength', 'formPassword')">Password should have more than 6 characters</mat-error>
+      <mat-error *ngIf="hasError('password', 'serverError', 'formPassword')">Password {{serverError}}</mat-error>
+    </mat-form-field>
+    <br />
+    <mat-form-field>
+      <input matInput placeholder="Confirm new password" formControlName="password_confirmation" [type]="hideConfirmation ? 'password' : 'text'" class="form-right-align">
+      <mat-icon matSuffix (click)="hideConfirmation = !hideConfirmation">{{hideConfirmation ? 'visibility_off' : 'visibility'}}</mat-icon>
+      <mat-error *ngIf="hasError('password_confirmation', 'required', 'formPassword')">Password confirmation is required</mat-error>
+      <mat-error *ngIf="hasError('password_confirmation', 'minlength', 'formPassword')">Password confirmation should have more than 6 characters</mat-error>
+      <mat-error *ngIf="hasError('password_confirmation', 'serverError', 'formPassword')">Password confirmation {{serverError}}</mat-error>
+    </mat-form-field>
+    <br />
+    <button mat-flat-button color="primary" class="primary-bg-color" [disabled]="formPassword.invalid" type="submit">Update password</button>
+    <a mat-raised-button routerLink="/">Back</a>
+  </form>
+</div>

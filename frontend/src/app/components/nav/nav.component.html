@@ -4,7 +4,7 @@
 
     <div class="flex-spacer"></div>
 
-    <button *ngIf="currentUser && currentUser.attributes" mat-button>{{currentUser.attributes.email}}</button>
+    <button routerLink="profile" *ngIf="currentUser && currentUser.attributes" mat-button>{{currentUser.attributes.email}}</button>
     <button (click)="logout()" *ngIf="currentUser" mat-button>Logout</button>
   </nav>
 </header>

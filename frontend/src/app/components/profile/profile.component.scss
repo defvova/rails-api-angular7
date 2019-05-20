@@ -1,0 +1,29 @@
+.profile-page {
+  margin-top: 68px;
+
+  &.mat-toolbar {
+    margin-top: 52px;
+  }
+
+  &.form-content {
+    max-width: 300px;
+    box-shadow: none;
+    background: #fff;
+    box-shadow: 0px 6px 60px 0px rgba(38, 51, 64, 0.08);
+    border: none;
+    border-radius: 6px;
+    padding: 50px 60px;
+
+    form {
+      font-size: 13px;
+
+      a.mat-raised-button {
+        float: right;
+      }
+    }
+
+    .mat-form-field, .mat-stroked-button {
+      width: 100%;
+    }
+  }
+}

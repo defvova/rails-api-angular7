@@ -3,7 +3,9 @@ class User < ApplicationRecord
 
   has_many :providers, dependent: :destroy
 
-  validates :password, length: { minimum: 6 }, presence: true, confirmation: true
+  validates :password, length: { minimum: 6 }, presence: true, confirmation: true, on: :create
+  validates :password, length: { minimum: 6 }, presence: true, confirmation: true, allow_blank: true, on: :update
+
   validates :email, uniqueness: true, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }
 
   def self.find_or_create_user_with_provider(auth)

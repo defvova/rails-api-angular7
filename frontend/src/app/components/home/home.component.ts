@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { FormGroup, FormBuilder } from '@angular/forms';
 
-import { ApiService } from '../service/api.service';
-import { Trending } from '../interface/trending';
-import { Language } from '../interface/language';
-import { Period } from '../interface/period';
+import { ApiService } from '../../service/api.service';
+import { Trending } from '../../interface/trending';
+import { Language } from '../../interface/language';
+import { Period } from '../../interface/period';
 
 @Component({
   selector: 'app-home',

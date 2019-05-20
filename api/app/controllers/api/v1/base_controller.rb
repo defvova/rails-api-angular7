@@ -10,7 +10,7 @@ class Api::V1::BaseController < ApplicationController
 
     token = Jwt::GenerationService.new(user_id: user.id, access_token: access_token).token
     time = 24.hours.from_now
-    cookies.signed[:jwt] = { value: token, expires: time, httponly: true }
+    cookies.encrypted[:jwt] = { value: token, expires: time, httponly: true }
   end
 
   def current_user
@@ -26,7 +26,7 @@ class Api::V1::BaseController < ApplicationController
   private
 
   def decoded
-    Jwt::DecodingService.new(cookies.signed[:jwt]).decrypt!
+    Jwt::DecodingService.new(cookies.encrypted[:jwt]).decrypt!
   end
 
   def authenticate!

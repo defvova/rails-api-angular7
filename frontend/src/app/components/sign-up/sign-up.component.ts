@@ -4,8 +4,8 @@ import { Router } from '@angular/router';
 import { first } from 'rxjs/operators';
 import * as _ from 'lodash';
 
-import { AuthenticationService } from '../service/authentication.service';
-import { ApiService } from '../service/api.service';
+import { AuthenticationService } from '../../service/authentication.service';
+import { ApiService } from '../../service/api.service';
 
 @Component({
   selector: 'app-sign-up',

@@ -48,4 +48,5 @@ export class ApiService {
   public get(url: string): Observable<any> { return this.reqGet(url, 'get'); }
   public delete(url: string): Observable<any> { return this.reqGet(url, 'delete'); }
   public post(url: string, body: object): Observable<any> { return this.reqPost(url, 'post', body); }
+  public update(url: string, body: object): Observable<any> { return this.reqPost(url, 'put', body); }
 }

@@ -39,10 +39,11 @@ export class AuthenticationService {
   }
 
   public authGithub(callback) {
-    const wind = window.open(`${global.baseApiUrl}/auth/github`, 'Github', 'height=600,width=550');
+    const wind = window.open(`${global.baseApiUrl}/auth/github`, 'Github', 'height=600,width=550,resizable,scrollbars');
     let authResp: Observable<any>;
 
     wind.onload = () => {
+      wind.document.write('Success');
       authResp = this.api.get('/sessions/new').pipe(
         map(resp => {
           if (resp && resp.data && resp.data.id) {
@@ -58,7 +59,7 @@ export class AuthenticationService {
   }
 
   public login(email: string, password: string) {
-    return this.http.post<any>(`${global.apiUrl}/sessions`, { session: { email, password }}).pipe(
+    return this.http.post<any>(`${global.apiUrl}/sessions`, { session: { email, password }}, global.httpOptions).pipe(
       map(resp => {
         if (resp && resp.data && resp.data.id) {
           this.setCurrentUser(resp.data);
