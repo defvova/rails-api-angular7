@@ -7,7 +7,7 @@
 
  Rails.application.config.middleware.insert_before 0, Rack::Cors do
    allow do
-     origins 'http://localhost:4200', 'https://0bman.github.io/rails-api-angular7'
+     origins 'http://localhost:4200', 'https://0bman.github.io'
 
      resource '*',
        headers: :any,
