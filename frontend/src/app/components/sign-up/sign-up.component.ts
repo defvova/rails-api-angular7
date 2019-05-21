@@ -38,7 +38,7 @@ export class SignUpComponent implements OnInit {
     });
   }
 
-  private signUpViaProvider(): void {
+  public signUpViaProvider(): void {
     this.auth.authGithub((obs) => {
       obs.pipe(first()).subscribe(resp => {
         if (resp.data) {
@@ -50,11 +50,11 @@ export class SignUpComponent implements OnInit {
 
   private get f() { return this.form.controls; }
 
-  private hasError(controlName: string, errorName: string): boolean {
+  public hasError(controlName: string, errorName: string): boolean {
     return this.f[controlName].hasError(errorName);
   }
 
-  private submit() {
+  public submit() {
     if (this.form.valid) {
       this.api.post('/users', { user: this.form.value }).subscribe((resp) => {
         if (resp.errors) {

@@ -77,18 +77,18 @@ export class ProfileComponent implements OnInit, OnDestroy {
     return dirtyValues;
   }
 
-  private hasError(controlName: string, errorName: string, formName: string): boolean {
+  public hasError(controlName: string, errorName: string, formName: string): boolean {
     return this[formName].controls[controlName].hasError(errorName);
   }
 
-  private submitProfile() {
+  public submitProfile() {
     const callback = (data) => {
       this.auth.setCurrentUser({ ...this.currentUser, attributes: { ...this.formProfile.value, ...data } });
     };
     this.submit('formProfile', 'users', callback);
   }
 
-  private submitPassword() {
+  public submitPassword() {
     const callback = () => {
       this.formPassword.reset();
       this.snackBar.open('Password was successfully updated! Skip errors, sorry for that!', null, { duration: 5000 });

@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  private signInViaProvider(): void {
+  public signInViaProvider(): void {
     this.auth.authGithub((obs) => {
       obs.pipe(first()).subscribe(resp => {
         if (resp.data) {
@@ -48,11 +48,11 @@ export class LoginComponent implements OnInit {
 
   private get f() { return this.form.controls; }
 
-  private hasError(controlName: string, errorName: string): boolean {
+  public hasError(controlName: string, errorName: string): boolean {
     return this.f[controlName].hasError(errorName);
   }
 
-  private submit(): void {
+  public submit(): void {
     if (this.form.valid) {
       this.auth.login(this.f.email.value, this.f.password.value).pipe(first())
         .subscribe(resp => {
