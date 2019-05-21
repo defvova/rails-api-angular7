@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import * as global from '../configs/const';
+import { environment } from '../../environments/environment';
 
 import { ApiService } from './api.service';
 import { User } from '../interface/user';
@@ -39,7 +39,7 @@ export class AuthenticationService {
   }
 
   public authGithub(callback) {
-    const wind = window.open(`${global.baseApiUrl}/auth/github`, 'Github', 'height=600,width=550,resizable,scrollbars');
+    const wind = window.open(`${environment.baseApiUrl}/auth/github`, 'Github', 'height=600,width=550,resizable,scrollbars');
     let authResp: Observable<any>;
 
     wind.onload = () => {
@@ -59,7 +59,7 @@ export class AuthenticationService {
   }
 
   public login(email: string, password: string) {
-    return this.http.post<any>(`${global.apiUrl}/sessions`, { session: { email, password }}, global.httpOptions).pipe(
+    return this.http.post<any>(`${environment.apiUrl}/sessions`, { session: { email, password }}, environment.httpOptions).pipe(
       map(resp => {
         if (resp && resp.data && resp.data.id) {
           this.setCurrentUser(resp.data);

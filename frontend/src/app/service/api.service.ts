@@ -6,7 +6,7 @@ import {
   HttpHeaders,
   HttpErrorResponse
 } from '@angular/common/http';
-import * as global from '../configs/const';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -32,14 +32,14 @@ export class ApiService {
   }
 
   private reqGet(url: string, method: string): Observable<any> {
-    return this.http[method](global.apiUrl + url, global.httpOptions).pipe(
+    return this.http[method](environment.apiUrl + url, environment.httpOptions).pipe(
       map(this.extractData),
       catchError(this.handleError)
     );
   }
 
   private reqPost(url: string, method: string, body: object): Observable<any> {
-    return this.http[method](global.apiUrl + url, body, global.httpOptions).pipe(
+    return this.http[method](environment.apiUrl + url, body, environment.httpOptions).pipe(
       map(this.extractData),
       catchError(this.handleError)
     );
