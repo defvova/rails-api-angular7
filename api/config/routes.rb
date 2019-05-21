@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   get '/auth/:provider/callback', to: 'api/v1/sessions#create'
 
-  get '/', to: redirect('http://localhost:4200'), as: :front_root
-  get '/', to: redirect('http://localhost:4200/success'), as: :success_front_root
+  get '/', to: redirect(ENV.fetch('FRONT_ROOT') { 'http://localhost:4200' }), as: :front_root
+  get '/', to: redirect(ENV.fetch('SUCCESS_FRONT_ROOT') { 'http://localhost:4200/success' }), as: :success_front_root
 
   namespace :api do
     namespace :v1 do
